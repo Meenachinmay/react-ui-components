@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { FaBell } from "react-icons/fa";
-import { AiFillSetting } from "react-icons/ai";
+import { AiFillSetting, AiOutlineMenu } from "react-icons/ai";
 import { RiLogoutCircleRFill } from "react-icons/ri";
 
 const Container = styled.div`
@@ -12,6 +12,7 @@ const Container = styled.div`
 const Section = styled.div`
   width: 100%;
   height: 100px;
+  max-height: auto;
   background-color: #152b8d;
   color: #d1f1ff;
   display: flex;
@@ -21,6 +22,7 @@ const Section = styled.div`
   left: 0;
   top: 0;
   font-weight: bolder;
+  padding: 0px 16px 0px 16px;
 `;
 
 const Left = styled.div`
@@ -28,6 +30,10 @@ const Left = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 939px) {
+    display: none;
+  }
 `;
 
 const List = styled.ul`
@@ -35,21 +41,21 @@ const List = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 16px;
   gap: 10px;
 `;
 
 const ListItem = styled.li`
   margin-left: 5px;
-  margin-right: 5px;
+  width: auto;
   padding: 10px 16px;
   text-align: center;
-  font-size: 16px;
   cursor: pointer;
   border-radius: 20px;
-  transition: ease-in 0.4s;
 
   &:hover {
     background-color: #283d9bbe;
+    transition: ease-in 0.4s;
   }
 `;
 
@@ -59,6 +65,9 @@ const Right = styled.div`
   justify-content: center;
   gap: 10px;
   cursor: pointer;
+  @media screen and (max-width: 939px) {
+    display: none;
+  }
 `;
 
 const RightList = styled.ul`
@@ -78,11 +87,24 @@ const Logo = styled.img`
   object-fit: cover;
 `;
 
+const Menu = styled.div`
+  font-size: 25px;
+  cursor: pointer;
+  @media screen and (min-width: 939px) {
+    display: none;
+  }
+`;
+
 const Navbar: React.FC = () => {
+  const [showMenu, setShowMenu] = useState<boolean>(false);
+  console.log(showMenu)
   return (
     <>
       <Container>
         <Section>
+          <Menu>
+            <AiOutlineMenu  onClick={() => setShowMenu(!showMenu)}/>
+          </Menu>
           <Left>
             <List>
               <Logo src="./img/paypal.png" />
